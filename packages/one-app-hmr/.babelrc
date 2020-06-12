@@ -1,0 +1,12 @@
+{
+  "presets": [
+    [
+      "amex",
+      {
+        "preset-env": {
+          "modules": false
+        }
+      }
+    ]
+  ]
+}

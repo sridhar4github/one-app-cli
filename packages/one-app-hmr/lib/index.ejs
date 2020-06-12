@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>One App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script id="initial-state">
+      window.__webpack_public_path__ = '/dist/';
+      window.__holocron_module_bundle_type__ = 'browser';
+      window.__pwa_metadata__ = { serviceWorker: false };
+      window.__CLIENT_HOLOCRON_MODULE_MAP__ = {
+        modules: {
+          <% for (var index in modules) { %>
+            ["<%= modules[index] %>"]: {
+              browser: {
+                url: "<%= htmlWebpackPlugin.files.js[index] %>",
+                integrity: "<%= htmlWebpackPlugin.files.jsIntegrity[index] %>",
+              },
+            },
+          <% } %>
+        },
+      };
+      window.__INITIAL_STATE__ = <%= initialState %>;
+    </script>
+    <script src="/dist/app/app~vendors.js"></script>
+    <script src="/dist/app/runtime.js"></script>
+    <script src="/dist/app/vendors.js"></script>
+    <script src="/dist/app/i18n/en-us.js"></script>
+    <% for (var index in htmlWebpackPlugin.files.js) { %>
+    <script
+      src="<%= htmlWebpackPlugin.files.js[index] %>"
+      crossorigin="<%= webpackConfig.output.crossOriginLoading %>"
+    ></script>
+    <% } %>
+    <script src="/dist/dev-client.js"></script>
+    <script src="/dist/app/app.js"></script>
+  </body>
+</html>
